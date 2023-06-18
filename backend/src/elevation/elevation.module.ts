@@ -4,6 +4,6 @@ import { ElevationService } from './elevation.service';
 
 @Module({
   controllers: [ElevationController],
-  providers: [ElevationService]
+  providers: [ElevationService],
 })
 export class ElevationModule {}
