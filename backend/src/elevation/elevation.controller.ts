@@ -7,6 +7,7 @@ export class ElevationController {
 
   @Get('square')
   getNumbers(@Query('row') nOfRaw: number, @Query('column') nOfColumn: number) {
-    return `${nOfRaw}, ${nOfColumn}`;
+    // return `${nOfRaw}, ${nOfColumn}`;
+    return this.elevationService.getBlocks(nOfRaw, nOfColumn);
   }
 }
