@@ -22,9 +22,8 @@ export class ElevationService {
     return resultArray;
   }
 
-  getBlocks(row: number, column: number) {
+  async getBlocks(row: number, column: number) {
     const newArray = this.makeArray(row, column);
-    console.log(newArray);
-    return `${row}행, ${column}열`;
+    return await newArray;
   }
 }

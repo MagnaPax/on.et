@@ -8,8 +8,6 @@ export class ElevationController {
 
   @Get('square')
   getNumbers(@Query() query: CreateElevationDto) {
-    // query 객체는 이미 유효성 검사 및 타입 변환을 완료
-    console.log(`${typeof query.row}, ${typeof query.column}`);
-    return `Row: ${query.row}, Column: ${query.column}`;
+    return this.elevationService.getBlocks(query.row, query.column);
   }
 }
