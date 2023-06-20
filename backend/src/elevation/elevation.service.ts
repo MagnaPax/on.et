@@ -5,8 +5,31 @@ import { CreateElevationDto } from './dto/create-elevation.dto';
 export class ElevationService {
   private elevation: CreateElevationDto[] = [];
 
-  getValuesOfSides(array: number[][]): number[][] {
-    const rowCount = array.length;
+  countBlocks(array: number[][][]): number[][] {
+    let blockArr: number[][] = [];
+
+    array.forEach((subarray) => {
+      let temp: number[] = [];
+
+      subarray.forEach((numberArr) => {
+        let count = 0;
+
+        numberArr.reduce((max, cur, idx, scr) => {
+          if (cur > max) {
+            count++;
+            max = cur;
+          }
+          return max;
+        }, 0);
+        temp.push(count);
+      });
+      blockArr.push(temp);
+    });
+
+    return blockArr;
+  }
+
+  getValuesOfSides(array: number[][]): number[][][] {
     const columnCount = array[0].length;
 
     const topVirtical: number[][] = Array.from(
@@ -24,14 +47,7 @@ export class ElevationService {
       .reverse()
       .map((row) => [...row].reverse());
 
-    const newArray = [].concat(
-      topVirtical,
-      rightHorizon,
-      bottomVirtical,
-      leftHorizon,
-    );
-
-    return newArray;
+    return [topVirtical, rightHorizon, bottomVirtical, leftHorizon];
   }
 
   makeArray(row: number, column: number): number[][] {
@@ -53,9 +69,9 @@ export class ElevationService {
 
   async getBlocks(row: number, column: number): Promise<number[][]> {
     const newArray = this.makeArray(row, column);
-
     const theSides = this.getValuesOfSides(newArray);
+    const blocks = this.countBlocks(theSides);
 
-    return await newArray;
+    return await blocks;
   }
 }
