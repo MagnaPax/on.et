@@ -9,7 +9,7 @@ export class ElevationController {
   @Get('square')
   getNumberOfShownBlocks(
     @Query() query: CreateElevationDto,
-  ): Promise<number[][]> {
+  ): Promise<[number[][], number[][]]> {
     // query 객체는 이미 유효성 검사 및 타입 변환을 완료
     return this.elevationService.getNumberOfShownBlocks(
       query.row,
