@@ -41,7 +41,7 @@ export class ElevationService {
       .reverse()
       .map((row) => [...row].reverse());
 
-    const rightHorizon: number[][] = array.map((row) => row.reverse());
+    const rightHorizon: number[][] = array.map((row) => [...row].reverse());
 
     const leftHorizon: number[][] = [...rightHorizon]
       .reverse()
@@ -70,13 +70,13 @@ export class ElevationService {
   async getNumberOfShownBlocks(
     row: number,
     column: number,
-  ): Promise<number[][]> {
-    let theBlocks = this.makeBlocks(row, column);
-    console.log(`${row}행 ${column}열로 만들어진 블럭들\n${theBlocks}`);
+  ): Promise<[number[][], number[][]]> {
+    const blockValue = this.makeBlocks(row, column);
+    console.log(`${row}행 ${column}열로 만들어진 블럭들\n${blockValue}`);
 
-    const theSides = this.getValuesOfSides(theBlocks);
+    const theSides = this.getValuesOfSides(blockValue);
     const numberOfblocks = this.countBlocks(theSides);
 
-    return await numberOfblocks;
+    return await [blockValue, numberOfblocks];
   }
 }
