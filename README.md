@@ -11,3 +11,24 @@
    - 숫자가 **중복**되면 안됨
 
 4. 보이는 블럭 갯수 세는 비지니스 로직 만들기
+
+## 실행
+
+### 백엔드
+
+```
+$ cd backend
+$ npm i
+$ npm run start
+```
+
+### 프론트엔드
+
+```
+$ cd frontend
+$ npm i
+$ npm run go
+```
+
+- 웹페이지 접속
+  http://localhost:5173/
