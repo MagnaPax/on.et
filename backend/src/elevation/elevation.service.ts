@@ -6,15 +6,15 @@ export class ElevationService {
   private elevation: CreateElevationDto[] = [];
 
   countBlocks(array: number[][][]): number[][] {
-    let blockArr: number[][] = [];
+    const blockArr: number[][] = [];
 
     array.forEach((subarray) => {
-      let temp: number[] = [];
+      const temp: number[] = [];
 
       subarray.forEach((numberArr) => {
         let count = 0;
 
-        numberArr.reduce((max, cur, idx, scr) => {
+        numberArr.reduce((max, cur) => {
           if (cur > max) {
             count++;
             max = cur;
@@ -50,7 +50,7 @@ export class ElevationService {
     return [topVirtical, rightHorizon, bottomVirtical, leftHorizon];
   }
 
-  makeArray(row: number, column: number): number[][] {
+  makeBlocks(row: number, column: number): number[][] {
     const resultArray: number[][] = [];
 
     for (let i = 0; i < row; i++) {
@@ -67,11 +67,16 @@ export class ElevationService {
     return resultArray;
   }
 
-  async getBlocks(row: number, column: number): Promise<number[][]> {
-    const newArray = this.makeArray(row, column);
-    const theSides = this.getValuesOfSides(newArray);
-    const blocks = this.countBlocks(theSides);
+  async getNumberOfShownBlocks(
+    row: number,
+    column: number,
+  ): Promise<number[][]> {
+    let theBlocks = this.makeBlocks(row, column);
+    console.log(`${row}행 ${column}열로 만들어진 블럭들\n${theBlocks}`);
 
-    return await blocks;
+    const theSides = this.getValuesOfSides(theBlocks);
+    const numberOfblocks = this.countBlocks(theSides);
+
+    return await numberOfblocks;
   }
 }

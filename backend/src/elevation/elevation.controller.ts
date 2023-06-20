@@ -7,7 +7,13 @@ export class ElevationController {
   constructor(private elevationService: ElevationService) {}
 
   @Get('square')
-  getNumbers(@Query() query: CreateElevationDto) {
-    return this.elevationService.getBlocks(query.row, query.column);
+  getNumberOfShownBlocks(
+    @Query() query: CreateElevationDto,
+  ): Promise<number[][]> {
+    // query 객체는 이미 유효성 검사 및 타입 변환을 완료
+    return this.elevationService.getNumberOfShownBlocks(
+      query.row,
+      query.column,
+    );
   }
 }
