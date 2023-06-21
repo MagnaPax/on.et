@@ -13,7 +13,7 @@ let leftSide = ref([])
 
 function onSubmit() {
   const query = `row=${row.value}&column=${column.value}`;
-  fetch(`http://127.0.0.1:5048/elevation/square?${query}`)
+  fetch(`https://port-0-on-et-dihik2mlj4m7swv.sel4.cloudtype.app/elevation/square?${query}`)
     .then((response) => response.json())
     .then((responseData) => {
       data.value = responseData;
