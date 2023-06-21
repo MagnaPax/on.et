@@ -29,6 +29,3 @@ $ cd frontend
 $ npm i
 $ npm run go
 ```
-
-- 웹페이지 접속
-  http://localhost:5173/
